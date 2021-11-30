@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<div class="d-flex justify-content-center">
+		<div class="card text-center text-white bg-success mb-6" style="max-width: 50rem;">
+			<div class="card-header">
+				<h1>{{ article.title }}</h1>
+			</div>
+			<img src="{{ article.image }}" class="d-block user-select-none" width="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice"/>
+
+			<div class="card-body">
+				<h2 class="card-title">{{ article.author }}</h2>
+
+				<p class="card-text">{{ article.intro }}</p>
+				<p class"card-text">{{article.getDateArticles|format_date('full', locale='fr') }}</p>
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
