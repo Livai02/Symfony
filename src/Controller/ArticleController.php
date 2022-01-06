@@ -95,22 +95,16 @@ class ArticleController extends AbstractController
 
         $manager->remove($article);
         $manager->flush();
-        $this->addFlash('delete', 'L\'article a bien étais supprimer');
+        $this->addFlash('notice', 'L\'article a bien étais supprimer');
         return $this->redirectToRoute('article');
     }
 
-    public function update(Request $request): Response
+    //modifier un article
+
+    /**
+     * @Route("/article/update/{id}", name="update")
+     */
+    public function update($doctrine, int $id): Response
     {
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // do some sort of processing
-
-            $this->addFlash(
-                'notice',
-                'Vous avez bien supprimer l\'article'
-            );
-
-            return $this->redirectToRoute("article");
-        }
     }
 }

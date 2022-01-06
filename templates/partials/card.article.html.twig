@@ -6,7 +6,7 @@
 
 {% endif %}
 {% for message in app.flashes('notice') %}
-	<div class="flash-notice">
+	<div class="alert alert-success">
 		{{ message }}
 	</div>
 {% endfor %}
@@ -32,12 +32,13 @@
 
 						{% if user.role == "admin" %}
 							<div>
-								<a href="{#{ path("update", {"id":article.id}) }#}" class="btn btn-success">Modifier un article</a>
+								<a href="{{ path("update", {"id":article.id}) }}" class="btn btn-success">Modifier un article</a>
 								<a href="{{ path("delete", {"id":article.id}) }}" class="btn btn-success">Supprimer l'article</a>
 
 							</div>
-						{% endif %}
 
+
+						{% endif %}
 					</button>
 				</ul>
 			</div>
