@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css" integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" crossorigin="anonymous">
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+
+
+		{% endblock %}
+
+	</head>
+	<body>
+		{# ici on a l'objet pour définir un utilisateur #}
+		{% set user = {"firstname": "Bibianna", "lastname": "Starzinsky", "role": "admin", "isConnected" : true} %}
+		{# {% set article1 = {"title" : "League of legends", "intro" : "Que vous jouiez en solo ou en coopération avec des amis, League of Legends est un jeu de stratégie/action intense et hautement compétitif, conçu pour ceux qui aiment se battre pour la victoire.", "author": "Riot", "image" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-qAw_aUevIan4kZE_tLB747k2dKAjVm9vCQ&usqp=CAU"} %}
+																																				
+																						{% set article2 = {"title" : "Monster Hunter", "intro" : "Vous incarne un chasseur dans un environnement fantasy qui complète des quêtes ayant principalement pour but de chasser ou capturer des monstres et aussi de collecter des minéraux, poissons ou petits monstres", "author" : "Capcom", "image" : "https://cdn-ext.fanatical.com/production/product/1280x720/7f6e4bbc-69a4-4910-a424-8b4f14100c12.jpeg"} %}
+																																				
+																						{% set article3 = {"title" : "Final Fantasy XIV", "intro" : "Final Fantasy XIV est un jeu de rôle en ligne massivement multijoueur", "author" : " Square Enix", "image": "https://www.hommedumatch.fr/wp-content/uploads/2021/11/ff14-letter-from-the-producer-live-lxvii-endwalker-news-summary.jpg"} %}
+																																				
+																						{% set articles = [article1, article2, article3] %} #}
+
+		{% include "partials/header_dash.html.twig" %}
+
+
+		{% block body %}{% endblock %}
+
+		{#% block javascripts %}{% endblock %#}
+
+		{% include "partials/footer.html.twig" %}
+		{% include "partials/scripts.html.twig" %}
+	</body>
+</html>

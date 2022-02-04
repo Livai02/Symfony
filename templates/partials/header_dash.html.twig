@@ -1,0 +1,59 @@
+{% block body %}
+
+	<header>
+
+		<div
+			id="viewport">
+			<!-- Sidebar -->
+			<div id="sidebar">
+				<header>
+					<a href="{{ path("home") }}">BoomerGame</a>
+				</header>
+				<ul class="nav">
+					<li>
+						<a href=" {{ url('formulaire') }}">
+
+							<i class="fas fa-plus-circle"></i>
+							Ajouter un article</a>
+					</li>
+					<li>
+						<a href="#">
+
+							<i class="fas fa-puzzle-piece"></i>
+							Ajouter une catégorie</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fab fa-steam"></i>
+							ajouter une console
+						</a>
+					</li>
+
+				</ul>
+			</div>
+			<!-- nav -->
+			<div id="nav">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#">
+									<i class="zmdi zmdi-notifications text-danger"></i>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</nav>
+
+			</div>
+			{# containte #}
+			<div class="container-fluid">
+				<h1>Simple Sidebar</h1>
+				<p>{% include 'partials/card.article.html.twig' with articles %}</p>
+
+			</p>
+
+		</p>
+	</div>
+</div></header>{% endblock %}

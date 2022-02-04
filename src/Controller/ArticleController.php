@@ -13,6 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ArticleController extends AbstractController
 {
@@ -36,8 +41,8 @@ class ArticleController extends AbstractController
                 'attr' => ['placeholder' => 'Auteur de l\'article']
             ])
             ->add('image', UrlType::class, [
-                'label' => 'image',
-                'attr' => ['placeholder' =>  'Image de l\'article']
+                'label' => 'image Copier l\'adresse du lien',
+                'attr' => ['placeholder' => 'image']
             ])
             ->add('save', SubmitType::class, ['label' => 'Create Articles'])
             ->getForm();
@@ -47,11 +52,10 @@ class ArticleController extends AbstractController
             $manager->persist($article);
             $manager->flush();
         }
-
-
         return $this->render('article/formulaire.html.twig', [
             'controller_name' => 'ArticleController',
             'form' => $form->createView(),
+
         ]);
     }
 
@@ -104,7 +108,22 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/update/{id}", name="update")
      */
-    public function update($doctrine, int $id): Response
+    public function update(Request $request, Articles $article, EntityManagerInterface $manager): Response
     {
+        $form = $this->createForm(Articles::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($article);
+            $manager->flush();
+            $this->addFlash(
+                'info',
+                "L'article <strong>{$article->getTitle()}</strong> a bien été modifié"
+            );
+            return $this->redirectToRoute('card.article'[]);
+        }
+        return $this->render('article/update.html.twig', [
+            'article' => $article,
+            'form' => $form,
+        ]);
     }
 }
