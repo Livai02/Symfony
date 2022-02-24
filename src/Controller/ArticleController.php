@@ -2,22 +2,26 @@
 
 namespace App\Controller;
 
+use App\Entity\Console;
 use App\Entity\Articles;
-use App\Repository\ArticlesRepository;
+use App\Entity\Categorie;
 use Doctrine\ORM\EntityManager;
+use App\Repository\ArticlesRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
@@ -34,15 +38,23 @@ class ArticleController extends AbstractController
                 'attr' => ['placeholder' => 'titre de l\'article']
             ])
             ->add('intro', TextType::class, [
-                'label' => 'Intro'
+                'label' => 'Résume'
             ])
             ->add('author', TextType::class, [
                 'label' => 'auteur',
-                'attr' => ['placeholder' => 'Auteur de l\'article']
+                'attr' => ['placeholder' => 'Entreprise de developpement du jeux']
             ])
             ->add('image', UrlType::class, [
                 'label' => 'image Copier l\'adresse du lien',
                 'attr' => ['placeholder' => 'image']
+            ])
+            ->add('idcategorie', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'categorie'
+            ])
+            ->add('idconsole', EntityType::class, [
+                'class' => Console::class,
+                'choice_label' => 'console'
             ])
             ->add('save', SubmitType::class, ['label' => 'Create Articles'])
             ->getForm();

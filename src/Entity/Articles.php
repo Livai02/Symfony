@@ -42,6 +42,16 @@ class Articles
      */
     private $date_articles;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idcategorie;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idconsole;
+
 
 
     public function getId(): ?int
@@ -105,6 +115,30 @@ class Articles
     public function setDateArticles(\DateTimeInterface $date_articles): self
     {
         $this->date_articles = $date_articles;
+
+        return $this;
+    }
+
+    public function getIdCategorie(): ?int
+    {
+        return $this->idcategorie;
+    }
+
+    public function setIdCategorie(int $idcategorie): self
+    {
+        $this->idcategorie = $idcategorie;
+
+        return $this;
+    }
+
+    public function getIdConsole(): ?int
+    {
+        return $this->idconsole;
+    }
+
+    public function setIdConsole(int $idconsole): self
+    {
+        $this->idconsole = $idconsole;
 
         return $this;
     }

@@ -11,7 +11,7 @@
 		<div class="col-sm-12 col-md-6 col-lg-4">
 			<div class="card mb-2">
 				<h3 class="card-header">{{ article.title }}</h3>
-				<img src="{{ article.image }}" class="d-block user-select-none" width="100%" height="35%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice"/>
+				<img src="{{ article.image }}" class="d-block user-select-none" width="100%" height="35%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice" alt="{{ article.image }}"/>
 				<div class="card-body">
 					<p class="card-text"></p>
 				</div>
@@ -21,6 +21,7 @@
 						{{ article.author }}</li>
 
 					<li class="list-group-item">{{article.getDateArticles|format_date('full', locale='fr') }}</li>
+
 
 					<button type="button" class="btn btn-outline-success">
 						<a href="{{ path("detaille", {"id":article.id}) }}">Lire la suite >></a>
